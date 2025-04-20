@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Hidroponik</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5fdbc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .dashboard {
+      background: #ffffdf;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+    .title {
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #7a8b00;
+    }
+    .tds-circle {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      font-weight: bold;
+      font-size: 22px;
+      background: #3A7D44;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .tds-circle span {
+      font-size: 12px;
+      font-weight: normal;
+    }
+    .tds-circle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(#32c96b var(--tds-value, 0%), #e0e0e0 0%);
+      z-index: -1;
+      transition: background 0.3s ease-in-out;
+    }
+    .label {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .level-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .drop {
+      width: 80px;
+      height: 110px;
+      background: linear-gradient(to bottom, #00baff, #0095c4);
+      clip-path: path('M40,0 C60,30 80,50 40,110 C0,50 20,30 40,0 Z');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .drop::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      background: linear-gradient(to right, #0e73ff, #00e08f);
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .date-block {
+      text-align: left;
+    }
+    .time-block {
+      font-size: 20px;
+      align-self: center;
+    }
+    .relay-status {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="title">SISTEM MONITORING DAN KONTROL <br> HIDROPONIK VERTIKAL TOWER</div>
+
+    <div class="tds-circle" id="tdsCircle" style="--tds-value: 0%;">
+      <div id="tdsValue">-</div>
+      <span>ppm</span>
+    </div>
+    <div class="label">Kadar TDS</div>
+
+    <div class="level-container">
+      <div>
+        <div class="drop" id="nutrisiA">-</div>
+        <div class="label">Nutrisi A</div>
+      </div>
+      <div>
+        <div class="drop" id="nutrisiB">-</div>
+        <div class="label">Nutrisi B</div>
+      </div>
+    </div>
+
+    <div class="relay-status" id="relayStatus">Status Relay: -</div>
+
+    <div class="footer">
+      <div class="date-block">
+        <div id="hari">-</div>
+        <small id="tanggal">-</small>
+      </div>
+      <div class="time-block" id="waktu">-</div>
+    </div>
+  </div>
+
+  <!-- Jam & Tanggal -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hari = ['MINGGU','SENIN','SELASA','RABU','KAMIS','JUMAT','SABTU'][now.getDay()];
+      const tanggal = now.toLocaleDateString('id-ID');
+      const waktu = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+      document.getElementById('hari').textContent = hari;
+      document.getElementById('tanggal').textContent = tanggal;
+      document.getElementById('waktu').textContent = waktu;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+  <!-- Firebase Config & Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAyJtY2qYdZNPYQR5jCn8kra-kY27h7_8s",
+      authDomain: "smarthidroponik-e3f1d.firebaseapp.com",
+      databaseURL: "https://smarthidroponik-e3f1d-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "smarthidroponik-e3f1d",
+      storageBucket: "smarthidroponik-e3f1d.firebasestorage.app",
+      messagingSenderId: "762628096518",
+      appId: "1:762628096518:web:be845e0230f1acd7a33987",
+      measurementId: "G-4ZE1K79B0H"
+    };
+
+    var app = firebase.initializeApp(firebaseConfig);
+    var db = firebase.database();
+
+    // Update TDS
+    db.ref("sensor/tds").on("value", snapshot => {
+      const tds = snapshot.val();
+      if (tds !== null) updateTDS(tds);
+    });
+
+    function updateTDS(value) {
+      const tdsCircle = document.getElementById('tdsCircle');
+      const tdsValue = document.getElementById('tdsValue');
+
+      const percent = Math.min(Math.max((value / 2000) * 100, 0), 100);
+      tdsCircle.style.setProperty('--tds-value', percent + '%');
+      tdsValue.textContent = value;
+
+      if (value >= 850 && value <= 900) {
+        tdsCircle.style.background = '#00b894'; // hijau
+      } else if (value >= 600 && value < 850) {
+        tdsCircle.style.background = '#fdcb6e'; // kuning
+      } else {
+        tdsCircle.style.background = '#d63031'; // merah
+      }
+    }
+
+    // Update Water Level A & B
+    db.ref("sensor/waterLevelA").on("value", snapshot => {
+      const levelA = snapshot.val();
+      if (levelA !== null)
+        document.getElementById("nutrisiA").textContent = levelA.toFixed(0) + "%";
+    });
+
+    db.ref("sensor/waterLevelB").on("value", snapshot => {
+      const levelB = snapshot.val();
+      if (levelB !== null)
+        document.getElementById("nutrisiB").textContent = levelB.toFixed(0) + "%";
+    });
+
+    // Update Relay Status
+    db.ref("relay/status").on("value", snapshot => {
+      const relay = snapshot.val();
+      document.getElementById("relayStatus").textContent = "Status Relay: " + (relay ? "AKTIF" : "NONAKTIF");
+    });
+  </script>
+</body>
+</html>
