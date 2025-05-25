@@ -177,13 +177,10 @@
     </div>
 
     <!-- Status Pompa Nutrisi A -->
-    <div class="pompa-status" id="pompaStatusA">Status Pompa Nutrisi A: -</div>
+    <div class="pompa-status" id="pompaStatusA">Status Pompa Nutrisi: -</div>
     
     <!-- Status Pompa Nutrisi B -->
-    <div class="pompa-status" id="pompaStatusB">Status Pompa Nutrisi B: -</div>
-
-    <!-- Status Pompa Hidroponik -->
-    <div class="pompa-status" id="pompaStatus">Status Pompa Hidroponik: -</div>
+    <div class="pompa-status" id="pompaStatusB">Status Pompa Air: -</div>
 
     <div class="footer">
       <div class="date-block">
@@ -261,29 +258,19 @@
       document.getElementById("nutrisiB").textContent = value.toFixed(0) + "%";
     });
 
-    // Status Relay
-    onValue(ref(db, "relay/status"), (snapshot) => {
-      const value = snapshot.val();
-      document.getElementById("relayStatus").textContent = "Status Relay: " + (value ? "AKTIF" : "NONAKTIF");
-    });
-
     // Status Pompa Nutrisi A
-    onValue(ref(db, "/relay/nutrisiA"), (snapshot) => {
+    onValue(ref(db, "/relay/nutrisi"), (snapshot) => {
       const value = snapshot.val();
       document.getElementById("pompaStatusA").textContent = "Status Pompa Nutrisi A: " + (value ? "AKTIF" : "NONAKTIF");
     });
 
     // Status Pompa Nutrisi B
-    onValue(ref(db, "/relay/nutrisiB"), (snapshot) => {
+    onValue(ref(db, "/relay/air"), (snapshot) => {
       const value = snapshot.val();
       document.getElementById("pompaStatusB").textContent = "Status Pompa Nutrisi B: " + (value ? "AKTIF" : "NONAKTIF");
     });
 
-    // Status Pompa Hidroponik
-    onValue(ref(db, "/pompa/status"), (snapshot) => {
-      const value = snapshot.val();
-      document.getElementById("pompaStatus").textContent = "Status Pompa Hidroponik: " + (value ? "AKTIF" : "NONAKTIF");
-    });
+
   </script>
 </body>
 </html>
