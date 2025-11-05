@@ -73,9 +73,15 @@
 
     // 🔹 KONFIGURASI FIREBASE
     const firebaseConfig = {
-      apiKey: "AIzaSyAJTwkiE4kE0v85wN8Xgxa3dXKqV7syREQ",
-      databaseURL: "https://penetastukik-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    };
+  apiKey: "AIzaSyAJTwkiE4kE0v85wN8Xgxa3dXKqV7syREQ",
+  authDomain: "penetastukik.firebaseapp.com",
+  databaseURL: "https://penetastukik-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "penetastukik",
+  storageBucket: "penetastukik.firebasestorage.app",
+  messagingSenderId: "755145961491",
+  appId: "1:755145961491:web:9c1ac9e16be4d6d2a90fe6",
+  measurementId: "G-TMZ0JSC0K3"
+};
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
@@ -171,5 +177,6 @@
   </div>
 </body>
 </html>
+
 
 
