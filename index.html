@@ -75,9 +75,7 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-    .grid-full {
-      grid-column: 1 / -1;
-    }
+    .grid-full { grid-column: 1 / -1; }
 
     /* ── Card ── */
     .card {
@@ -99,7 +97,8 @@
     }
     .card.inkubator-a::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); }
     .card.inkubator-b::before { background: linear-gradient(90deg, var(--accent-orange), var(--accent-red)); }
-    .card.tangki::before { background: linear-gradient(90deg, var(--accent-teal), var(--accent-green)); }
+    .card.tangki::before      { background: linear-gradient(90deg, var(--accent-teal), var(--accent-green)); }
+    .card.lcd-ctrl::before    { background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue)); }
 
     /* ── Card Header ── */
     .card-header {
@@ -120,12 +119,13 @@
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    .inkubator-a .dot { background: var(--accent-blue); box-shadow: 0 0 6px var(--accent-blue); }
+    .inkubator-a .dot { background: var(--accent-blue);   box-shadow: 0 0 6px var(--accent-blue); }
     .inkubator-b .dot { background: var(--accent-orange); box-shadow: 0 0 6px var(--accent-orange); }
-    .tangki .dot { background: var(--accent-teal); box-shadow: 0 0 6px var(--accent-teal); }
+    .tangki      .dot { background: var(--accent-teal);   box-shadow: 0 0 6px var(--accent-teal); }
+    .lcd-ctrl    .dot { background: var(--accent-purple); box-shadow: 0 0 6px var(--accent-purple); }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.85); }
+      50%       { opacity: 0.5; transform: scale(0.85); }
     }
     .update-badge {
       font-size: 11px;
@@ -161,7 +161,6 @@
     }
     .sensor-value.suhu { color: var(--accent-orange); }
     .sensor-value.hum  { color: var(--accent-teal); }
-    .sensor-value.small { font-size: 16px; }
 
     /* ── Section divider ── */
     .section-label {
@@ -203,22 +202,14 @@
       justify-content: center;
       gap: 6px;
     }
-    .relay-btn.on {
-      background: var(--on-color);
-      border-color: var(--on-border);
-      color: #acf2bd;
-    }
-    .relay-btn.off {
-      background: var(--off-color);
-      border-color: var(--off-border);
-      color: var(--text-muted);
-    }
+    .relay-btn.on  { background: var(--on-color);  border-color: var(--on-border);  color: #acf2bd; }
+    .relay-btn.off { background: var(--off-color); border-color: var(--off-border); color: var(--text-muted); }
     .relay-btn .led {
       width: 7px; height: 7px;
       border-radius: 50%;
       flex-shrink: 0;
     }
-    .relay-btn.on .led { background: #3fb950; box-shadow: 0 0 5px #3fb950; }
+    .relay-btn.on  .led { background: #3fb950; box-shadow: 0 0 5px #3fb950; }
     .relay-btn.off .led { background: var(--text-muted); }
 
     /* ── Arus Grid ── */
@@ -262,17 +253,8 @@
       border-radius: 20px;
       border: 1px solid transparent;
     }
-    .fault-badge.ok {
-      background: #0d2114;
-      border-color: #1a4428;
-      color: var(--accent-green);
-    }
-    .fault-badge.err {
-      background: #2d0f0f;
-      border-color: #5a1f1f;
-      color: var(--accent-red);
-      animation: blink 1s infinite;
-    }
+    .fault-badge.ok  { background: #0d2114; border-color: #1a4428; color: var(--accent-green); }
+    .fault-badge.err { background: #2d0f0f; border-color: #5a1f1f; color: var(--accent-red); animation: blink 1s infinite; }
     @keyframes blink { 50% { opacity: 0.5; } }
 
     /* ── Suhu Kabel ── */
@@ -288,110 +270,139 @@
       padding: 8px 6px;
       text-align: center;
     }
-    .kabel-label {
-      font-size: 10px;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-    .kabel-value {
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      color: var(--accent-orange);
-    }
+    .kabel-label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .kabel-value { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent-orange); }
 
     /* ── Tangki Air ── */
-    .tangki-body {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-    .water-tank {
-      flex-shrink: 0;
-      width: 70px;
-      position: relative;
-    }
-    .tank-outer {
-      width: 70px;
-      height: 110px;
+    .tangki-body { display: flex; gap: 20px; align-items: flex-start; }
+    .water-tank  { flex-shrink: 0; width: 70px; }
+    .tank-outer  {
+      width: 70px; height: 110px;
       border: 2px solid var(--accent-teal);
       border-radius: 6px 6px 10px 10px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: var(--surface2);
     }
     .tank-fill {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
+      position: absolute; bottom: 0; left: 0; right: 0;
       background: linear-gradient(180deg, #39d0d855 0%, #39d0d8aa 100%);
       transition: height 1s ease;
       border-radius: 0 0 8px 8px;
     }
-    .tank-label {
-      text-align: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      color: var(--accent-teal);
-      margin-top: 6px;
-      font-weight: 700;
+    .tank-label { text-align: center; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent-teal); margin-top: 6px; font-weight: 700; }
+    .tangki-info { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .tangki-row  { display: flex; flex-direction: column; gap: 2px; }
+    .tangki-row .label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.7px; }
+    .tangki-row .value { font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; color: var(--accent-teal); }
+    .alert-box {
+      background: #2d0f0f; border: 1px solid #5a1f1f;
+      border-radius: 8px; padding: 8px 12px;
+      font-size: 13px; font-weight: 700; color: var(--accent-red);
+      display: flex; align-items: center; gap: 6px;
     }
-    .tangki-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .alert-box.ok { background: #0d2114; border-color: #1a4428; color: var(--accent-green); }
+    .pompa-backup {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 12px;
+      font-size: 13px; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 8px;
     }
-    .tangki-row {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .pompa-backup .status { font-weight: 700; }
+    .pompa-backup .status.on  { color: var(--accent-green); }
+    .pompa-backup .status.off { color: var(--text-muted); }
+
+    /* ── LCD Control Card ── */
+    .lcd-control-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-    .tangki-row .label {
-      font-size: 11px;
+    .lcd-panel {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .lcd-panel-title {
+      font-size: 13px;
+      font-weight: 800;
       color: var(--text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.7px;
-    }
-    .tangki-row .value {
-      font-family: 'Space Mono', monospace;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent-teal);
-    }
-    .alert-box {
-      background: #2d0f0f;
-      border: 1px solid #5a1f1f;
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent-red);
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .alert-box.ok {
-      background: #0d2114;
-      border-color: #1a4428;
-      color: var(--accent-green);
+    .lcd-page-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .pompa-backup {
-      background: var(--surface2);
-      border: 1px solid var(--border);
+    .lcd-page-btn {
+      background: var(--off-color);
+      border: 1px solid var(--off-border);
       border-radius: 8px;
-      padding: 8px 12px;
+      padding: 10px 12px;
+      font-family: 'Nunito', sans-serif;
       font-size: 13px;
-      color: var(--text-secondary);
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .pompa-backup .status {
+    .lcd-page-btn:hover {
+      background: #21262d;
+      border-color: var(--accent-purple);
+      color: var(--text-primary);
+    }
+    .lcd-page-btn.active {
+      background: #1a1040;
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+    }
+    .lcd-page-btn .page-num {
+      background: var(--border);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .lcd-page-btn.active .page-num {
+      background: var(--accent-purple);
+      color: #000;
+    }
+    .lcd-current {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'Space Mono', monospace;
+      text-align: center;
+    }
+    .lcd-current span {
+      color: var(--accent-purple);
       font-weight: 700;
     }
-    .pompa-backup .status.on { color: var(--accent-green); }
-    .pompa-backup .status.off { color: var(--text-muted); }
+
+    /* ── Status kirim ── */
+    .send-status {
+      font-size: 11px;
+      font-family: 'Space Mono', monospace;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid transparent;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    .send-status.idle    { background: var(--surface2); border-color: var(--border); color: var(--text-muted); }
+    .send-status.sending { background: #1a1040; border-color: var(--accent-purple); color: var(--accent-purple); }
+    .send-status.ok      { background: #0d2114; border-color: #1a4428; color: var(--accent-green); }
+    .send-status.err     { background: #2d0f0f; border-color: #5a1f1f; color: var(--accent-red); }
 
     /* ── Footer ── */
     .footer {
@@ -405,9 +416,8 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
-    // 🔹 KONFIGURASI FIREBASE
     const firebaseConfig = {
       apiKey: "AIzaSyAJTwkiE4kE0v85wN8Xgxa3dXKqV7syREQ",
       authDomain: "penetastukik.firebaseapp.com",
@@ -420,21 +430,19 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+    const db  = getDatabase(app);
 
-    // 🔹 Helper: update teks
-    function set(id, value, suffix = "") {
+    // ── Helper: update teks elemen ──
+    function setText(id, value, suffix = "") {
       const el = document.getElementById(id);
       if (el) el.textContent = (value !== null && value !== undefined ? value : "--") + suffix;
     }
 
-    // 🔹 Helper: format angka desimal
     function fmt(val, dec = 2) {
       if (val === null || val === undefined) return "--";
       return parseFloat(val).toFixed(dec);
     }
 
-    // 🔹 Waktu WIB
     function timeWIB() {
       return new Intl.DateTimeFormat("id-ID", {
         timeZone: "Asia/Jakarta",
@@ -443,7 +451,6 @@
       }).format(new Date()) + " WIB";
     }
 
-    // 🔹 Relay button
     function setRelay(id, name, state) {
       const btn = document.getElementById(id);
       if (!btn) return;
@@ -451,7 +458,6 @@
       btn.innerHTML = `<span class="led"></span>${name}: ${state ? "ON" : "OFF"}`;
     }
 
-    // 🔹 Fault badge
     function setFault(id, name, isErr) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -459,117 +465,160 @@
       el.textContent = isErr ? `⚠ ${name} FAULT` : `✓ ${name}`;
     }
 
-    // ─── INKUBATOR A ───────────────────────────────────────
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    // ── Label halaman LCD ──
+    const PAGE_LABELS = [
+      "Suhu & Relay",
+      "Suhu Kabel",
+      "Arus & Daya"
+    ];
+
+    // ── State halaman LCD aktif ──
+    let currentPageA = 0;
+    let currentPageB = 0;
+
+    // ── Render tombol halaman LCD A ──
+    function renderLCDButtons(lcdId, currentPage, onClickFn) {
+      const container = document.getElementById(lcdId);
+      if (!container) return;
+      container.innerHTML = "";
+      PAGE_LABELS.forEach((label, i) => {
+        const btn = document.createElement("button");
+        btn.className = "lcd-page-btn" + (i === currentPage ? " active" : "");
+        btn.innerHTML = `<span class="page-num">${i}</span>${label}`;
+        btn.onclick = () => onClickFn(i);
+        container.appendChild(btn);
+      });
+    }
+
+    // ── Kirim halaman LCD ke Firebase ──
+    async function setLCDPage(lcdKey, page, statusId) {
+      const statusEl = document.getElementById(statusId);
+      if (statusEl) { statusEl.className = "send-status sending"; statusEl.textContent = "Mengirim..."; }
+      try {
+        await set(ref(db, `/lcd/${lcdKey}`), page);
+        if (statusEl) { statusEl.className = "send-status ok"; statusEl.textContent = "✓ Terkirim"; }
+        setTimeout(() => {
+          if (statusEl) { statusEl.className = "send-status idle"; statusEl.textContent = "Siap"; }
+        }, 2000);
+      } catch (e) {
+        console.error("Set LCD page error:", e);
+        if (statusEl) { statusEl.className = "send-status err"; statusEl.textContent = "✗ Gagal"; }
+      }
+    }
+
+    // ── Listen perubahan /lcd/pageA dari Firebase ──
+    onValue(ref(db, "/lcd/pageA"), snap => {
+      const page = snap.val();
+      if (page !== null && page >= 0 && page < PAGE_LABELS.length) {
+        currentPageA = page;
+        renderLCDButtons("lcdBtnsA", currentPageA,
+          (i) => setLCDPage("pageA", i, "statusA"));
+        document.getElementById("lcdCurrentA").innerHTML =
+          `Halaman aktif: <span>${PAGE_LABELS[currentPageA]}</span>`;
+      }
+    });
+
+    // ── Listen perubahan /lcd/pageB dari Firebase ──
+    onValue(ref(db, "/lcd/pageB"), snap => {
+      const page = snap.val();
+      if (page !== null && page >= 0 && page < PAGE_LABELS.length) {
+        currentPageB = page;
+        renderLCDButtons("lcdBtnsB", currentPageB,
+          (i) => setLCDPage("pageB", i, "statusB"));
+        document.getElementById("lcdCurrentB").innerHTML =
+          `Halaman aktif: <span>${PAGE_LABELS[currentPageB]}</span>`;
+      }
+    });
+
+    // ── Inkubator A ──
     onValue(ref(db, "inkubatorA/suhu"), snap => {
-      set("suhuA", fmt(snap.val(), 2), " °C");
+      setText("suhuA", fmt(snap.val(), 2), " °C");
       document.getElementById("lastUpdateA").textContent = timeWIB();
     });
-    onValue(ref(db, "inkubatorA/kelembapan"), snap => set("kelembapanA", fmt(snap.val(), 1), " %"));
+    onValue(ref(db, "inkubatorA/kelembapan"), snap =>
+      setText("kelembapanA", fmt(snap.val(), 1), " %"));
 
-    // Relay A
     ["lampu","pompa","peltier","fan"].forEach(k =>
-      onValue(ref(db, `inkubatorA/relay/${k}`), snap => setRelay(k+"A", cap(k), snap.val()))
-    );
+      onValue(ref(db, `inkubatorA/relay/${k}`), snap =>
+        setRelay(k+"A", cap(k), snap.val())));
 
-    // Arus A
     onValue(ref(db, "inkubatorA/arus"), snap => {
       const d = snap.val() || {};
-      set("arusLampuA",  fmt(d.lampu_ads, 2),  " A");
-      set("arusPompaA",  fmt(d.pompa_ads, 2),  " A");
-      set("arusPeltierA",fmt(d.peltier,   2),  " A");
-      set("arusFanA",    fmt(d.fan,        2), " A");
+      setText("arusLampuA",   fmt(d.lampu_ads, 2), " mA");
+      setText("arusPompaA",   fmt(d.pompa_ads, 2), " mA");
+      setText("arusPeltierA", fmt(d.peltier,   2), " mA");
+      setText("arusFanA",     fmt(d.fan,        2), " mA");
     });
 
-    // Fault A
     onValue(ref(db, "inkubatorA/fault"), snap => {
       const d = snap.val() || {};
       ["lampu","pompa","peltier","fan"].forEach(k =>
-        setFault("fault"+cap(k)+"A", cap(k), d[k])
-      );
+        setFault("fault"+cap(k)+"A", cap(k), d[k]));
     });
 
-    // Suhu Kabel A
     onValue(ref(db, "inkubatorA/suhuKabel"), snap => {
       const d = snap.val() || {};
-      set("kabelLampuA",  fmt(d.lampu,  1), "°C");
-      set("kabelPompaA",  fmt(d.pompa,  1), "°C");
-      set("kabelPeltierA",fmt(d.peltier,1), "°C");
-      set("kabelFanA",    fmt(d.fan,    1), "°C");
+      setText("kabelLampuA",   fmt(d.lampu,   1), "°C");
+      setText("kabelPompaA",   fmt(d.pompa,   1), "°C");
+      setText("kabelPeltierA", fmt(d.peltier, 1), "°C");
+      setText("kabelFanA",     fmt(d.fan,     1), "°C");
     });
 
-    // ─── INKUBATOR B ───────────────────────────────────────
+    // ── Inkubator B ──
     onValue(ref(db, "inkubatorB/suhu"), snap => {
-      set("suhuB", fmt(snap.val(), 2), " °C");
+      setText("suhuB", fmt(snap.val(), 2), " °C");
       document.getElementById("lastUpdateB").textContent = timeWIB();
     });
-    onValue(ref(db, "inkubatorB/kelembapan"), snap => set("kelembapanB", fmt(snap.val(), 1), " %"));
+    onValue(ref(db, "inkubatorB/kelembapan"), snap =>
+      setText("kelembapanB", fmt(snap.val(), 1), " %"));
 
-    // Relay B
     ["lampu","pompa","peltier","fan"].forEach(k =>
-      onValue(ref(db, `inkubatorB/relay/${k}`), snap => setRelay(k+"B", cap(k), snap.val()))
-    );
+      onValue(ref(db, `inkubatorB/relay/${k}`), snap =>
+        setRelay(k+"B", cap(k), snap.val())));
 
-    // Arus B
     onValue(ref(db, "inkubatorB/arus"), snap => {
       const d = snap.val() || {};
-      set("arusLampuB",  fmt(d.lampu_ads, 2), " A");
-      set("arusPompaB",  fmt(d.pompa_ads, 2), " A");
-      set("arusPeltierB",fmt(d.peltier,   2), " A");
-      set("arusFanB",    fmt(d.fan,        2)," A");
+      setText("arusLampuB",   fmt(d.lampu_ads, 2), " mA");
+      setText("arusPompaB",   fmt(d.pompa_ads, 2), " mA");
+      setText("arusPeltierB", fmt(d.peltier,   2), " mA");
+      setText("arusFanB",     fmt(d.fan,        2), " mA");
     });
 
-    // Fault B
     onValue(ref(db, "inkubatorB/fault"), snap => {
       const d = snap.val() || {};
       ["lampu","pompa","peltier","fan"].forEach(k =>
-        setFault("fault"+cap(k)+"B", cap(k), d[k])
-      );
+        setFault("fault"+cap(k)+"B", cap(k), d[k]));
     });
 
-    // Suhu Kabel B
     onValue(ref(db, "inkubatorB/suhuKabel"), snap => {
       const d = snap.val() || {};
-      set("kabelLampuB",  fmt(d.lampu,  1), "°C");
-      set("kabelPompaB",  fmt(d.pompa,  1), "°C");
-      set("kabelPeltierB",fmt(d.peltier,1), "°C");
-      set("kabelFanB",    fmt(d.fan,    1), "°C");
+      setText("kabelLampuB",   fmt(d.lampu,   1), "°C");
+      setText("kabelPompaB",   fmt(d.pompa,   1), "°C");
+      setText("kabelFanB",     fmt(d.fan,     1), "°C");
     });
 
-    // ─── TANGKI AIR ────────────────────────────────────────
+    // ── Tangki Air ──
     onValue(ref(db, "tangkiAir"), snap => {
       const d = snap.val() || {};
-      const persen = d.persenPenuh ?? 0;
+      const persen  = d.persenPenuh ?? 0;
       const levelCm = d.levelCm ?? 0;
-
-      set("tankPersen", persen, " %");
-      set("tankLevel", levelCm, " cm");
-
-      // Animasi isi tangki
+      setText("tankPersen", persen,  " %");
+      setText("tankLevel",  levelCm, " cm");
       const fill = document.getElementById("tankFill");
       if (fill) fill.style.height = Math.min(persen, 100) + "%";
-
-      // Alert level rendah
       const alertEl = document.getElementById("alertAir");
       if (alertEl) {
-        if (d.lowLevelAlert) {
-          alertEl.className = "alert-box";
-          alertEl.innerHTML = "⚠ Air Hampir Habis!";
-        } else {
-          alertEl.className = "alert-box ok";
-          alertEl.innerHTML = "✓ Level Air Normal";
-        }
+        alertEl.className = d.lowLevelAlert ? "alert-box" : "alert-box ok";
+        alertEl.innerHTML = d.lowLevelAlert ? "⚠ Air Hampir Habis!" : "✓ Level Air Normal";
       }
-
-      // Pompa backup
       const pbEl = document.getElementById("pompaBackupStatus");
       if (pbEl) {
         pbEl.className = "status " + (d.pompaBackup ? "on" : "off");
         pbEl.textContent = d.pompaBackup ? "ON" : "OFF";
       }
     });
-
-    // Helper capitalize
-    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   </script>
 </head>
 
@@ -578,7 +627,7 @@
   <div class="header">
     <div class="header-badge">🐢 Sistem Monitoring Aktif</div>
     <h1>Dashboard <span>Inkubator</span> Penyu</h1>
-    <div class="header-sub">Pemantauan real-time inkubator A & B · Tangki Air</div>
+    <div class="header-sub">Pemantauan real-time inkubator A & B · Tangki Air · Kontrol LCD</div>
   </div>
 
   <div class="grid">
@@ -586,13 +635,9 @@
     <!-- ══════════ INKUBATOR A ══════════ -->
     <div class="card inkubator-a">
       <div class="card-header">
-        <div class="card-title">
-          <span class="dot"></span> Inkubator A
-        </div>
+        <div class="card-title"><span class="dot"></span> Inkubator A</div>
         <div class="update-badge" id="lastUpdateA">--</div>
       </div>
-
-      <!-- Suhu & Kelembapan -->
       <div class="sensor-grid">
         <div class="sensor-box">
           <div class="sensor-label">🌡 Suhu</div>
@@ -603,8 +648,6 @@
           <div class="sensor-value hum"><span id="kelembapanA">--</span></div>
         </div>
       </div>
-
-      <!-- Relay -->
       <div class="section-label">Status Relay</div>
       <div class="relay-grid">
         <button id="lampuA"   class="relay-btn off"><span class="led"></span>Lampu: OFF</button>
@@ -612,26 +655,20 @@
         <button id="peltierA" class="relay-btn off"><span class="led"></span>Peltier: OFF</button>
         <button id="fanA"     class="relay-btn off"><span class="led"></span>Fan: OFF</button>
       </div>
-
-      <!-- Arus -->
-      <div class="section-label">Arus (Ampere)</div>
+      <div class="section-label">Arus (mA)</div>
       <div class="arus-grid">
-        <div class="arus-box"><div class="arus-label">Lampu</div><div class="arus-value" id="arusLampuA">--</div></div>
-        <div class="arus-box"><div class="arus-label">Pompa</div><div class="arus-value" id="arusPompaA">--</div></div>
+        <div class="arus-box"><div class="arus-label">Lampu</div>  <div class="arus-value" id="arusLampuA">--</div></div>
+        <div class="arus-box"><div class="arus-label">Pompa</div>  <div class="arus-value" id="arusPompaA">--</div></div>
         <div class="arus-box"><div class="arus-label">Peltier</div><div class="arus-value" id="arusPeltierA">--</div></div>
-        <div class="arus-box"><div class="arus-label">Fan</div><div class="arus-value" id="arusFanA">--</div></div>
+        <div class="arus-box"><div class="arus-label">Fan</div>    <div class="arus-value" id="arusFanA">--</div></div>
       </div>
-
-      <!-- Suhu Kabel -->
       <div class="section-label">Suhu Kabel</div>
       <div class="kabel-grid">
-        <div class="kabel-box"><div class="kabel-label">Lampu</div><div class="kabel-value" id="kabelLampuA">--</div></div>
-        <div class="kabel-box"><div class="kabel-label">Pompa</div><div class="kabel-value" id="kabelPompaA">--</div></div>
+        <div class="kabel-box"><div class="kabel-label">Lampu</div>  <div class="kabel-value" id="kabelLampuA">--</div></div>
+        <div class="kabel-box"><div class="kabel-label">Pompa</div>  <div class="kabel-value" id="kabelPompaA">--</div></div>
         <div class="kabel-box"><div class="kabel-label">Peltier</div><div class="kabel-value" id="kabelPeltierA">--</div></div>
-        <div class="kabel-box"><div class="kabel-label">Fan</div><div class="kabel-value" id="kabelFanA">--</div></div>
+        <div class="kabel-box"><div class="kabel-label">Fan</div>    <div class="kabel-value" id="kabelFanA">--</div></div>
       </div>
-
-      <!-- Fault -->
       <div class="section-label">Status Fault</div>
       <div class="fault-row">
         <span id="faultLampuA"   class="fault-badge ok">✓ Lampu</span>
@@ -644,13 +681,9 @@
     <!-- ══════════ INKUBATOR B ══════════ -->
     <div class="card inkubator-b">
       <div class="card-header">
-        <div class="card-title">
-          <span class="dot"></span> Inkubator B
-        </div>
+        <div class="card-title"><span class="dot"></span> Inkubator B</div>
         <div class="update-badge" id="lastUpdateB">--</div>
       </div>
-
-      <!-- Suhu & Kelembapan -->
       <div class="sensor-grid">
         <div class="sensor-box">
           <div class="sensor-label">🌡 Suhu</div>
@@ -661,8 +694,6 @@
           <div class="sensor-value hum"><span id="kelembapanB">--</span></div>
         </div>
       </div>
-
-      <!-- Relay -->
       <div class="section-label">Status Relay</div>
       <div class="relay-grid">
         <button id="lampuB"   class="relay-btn off"><span class="led"></span>Lampu: OFF</button>
@@ -670,26 +701,20 @@
         <button id="peltierB" class="relay-btn off"><span class="led"></span>Peltier: OFF</button>
         <button id="fanB"     class="relay-btn off"><span class="led"></span>Fan: OFF</button>
       </div>
-
-      <!-- Arus -->
-      <div class="section-label">Arus (Ampere)</div>
+      <div class="section-label">Arus (mA)</div>
       <div class="arus-grid">
-        <div class="arus-box"><div class="arus-label">Lampu</div><div class="arus-value" id="arusLampuB">--</div></div>
-        <div class="arus-box"><div class="arus-label">Pompa</div><div class="arus-value" id="arusPompaB">--</div></div>
+        <div class="arus-box"><div class="arus-label">Lampu</div>  <div class="arus-value" id="arusLampuB">--</div></div>
+        <div class="arus-box"><div class="arus-label">Pompa</div>  <div class="arus-value" id="arusPompaB">--</div></div>
         <div class="arus-box"><div class="arus-label">Peltier</div><div class="arus-value" id="arusPeltierB">--</div></div>
-        <div class="arus-box"><div class="arus-label">Fan</div><div class="arus-value" id="arusFanB">--</div></div>
+        <div class="arus-box"><div class="arus-label">Fan</div>    <div class="arus-value" id="arusFanB">--</div></div>
       </div>
-
-      <!-- Suhu Kabel -->
       <div class="section-label">Suhu Kabel</div>
       <div class="kabel-grid">
         <div class="kabel-box"><div class="kabel-label">Lampu</div><div class="kabel-value" id="kabelLampuB">--</div></div>
         <div class="kabel-box"><div class="kabel-label">Pompa</div><div class="kabel-value" id="kabelPompaB">--</div></div>
-        <div class="kabel-box"><div class="kabel-label">Peltier</div><div class="kabel-value" id="kabelPeltierB">--</div></div>
-        <div class="kabel-box"><div class="kabel-label">Fan</div><div class="kabel-value" id="kabelFanB">--</div></div>
+        <div class="kabel-box"><div class="kabel-label">Fan</div>  <div class="kabel-value" id="kabelFanB">--</div></div>
+        <div class="kabel-box"><div class="kabel-label">-</div>    <div class="kabel-value">-</div></div>
       </div>
-
-      <!-- Fault -->
       <div class="section-label">Status Fault</div>
       <div class="fault-row">
         <span id="faultLampuB"   class="fault-badge ok">✓ Lampu</span>
@@ -700,23 +725,17 @@
     </div>
 
     <!-- ══════════ TANGKI AIR ══════════ -->
-    <div class="card tangki grid-full">
+    <div class="card tangki">
       <div class="card-header">
-        <div class="card-title">
-          <span class="dot"></span> Monitoring Tangki Air
-        </div>
+        <div class="card-title"><span class="dot"></span> Monitoring Tangki Air</div>
       </div>
-
       <div class="tangki-body">
-        <!-- Visual Tangki -->
         <div class="water-tank">
           <div class="tank-outer">
-            <div class="tank-fill" id="tankFill" style="height: 0%;"></div>
+            <div class="tank-fill" id="tankFill" style="height:0%"></div>
           </div>
           <div class="tank-label" id="tankPersen">-- %</div>
         </div>
-
-        <!-- Info Tangki -->
         <div class="tangki-info">
           <div class="tangki-row">
             <span class="label">Level Air</span>
@@ -730,8 +749,51 @@
       </div>
     </div>
 
+    <!-- ══════════ KONTROL LCD ══════════ -->
+    <div class="card lcd-ctrl">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span> Kontrol Halaman LCD</div>
+      </div>
+
+      <div class="lcd-control-grid">
+
+        <!-- LCD A -->
+        <div class="lcd-panel">
+          <div class="lcd-panel-title">
+            🖥 LCD A (Inkubator A)
+          </div>
+          <div class="lcd-page-btns" id="lcdBtnsA">
+            <!-- diisi oleh JS -->
+          </div>
+          <div class="lcd-current" id="lcdCurrentA">
+            Halaman aktif: <span>--</span>
+          </div>
+          <div style="margin-top:10px; text-align:center;">
+            <span class="send-status idle" id="statusA">Siap</span>
+          </div>
+        </div>
+
+        <!-- LCD B -->
+        <div class="lcd-panel">
+          <div class="lcd-panel-title">
+            🖥 LCD B (Inkubator B)
+          </div>
+          <div class="lcd-page-btns" id="lcdBtnsB">
+            <!-- diisi oleh JS -->
+          </div>
+          <div class="lcd-current" id="lcdCurrentB">
+            Halaman aktif: <span>--</span>
+          </div>
+          <div style="margin-top:10px; text-align:center;">
+            <span class="send-status idle" id="statusB">Siap</span>
+          </div>
+        </div>
+
+      </div><!-- /lcd-control-grid -->
+    </div><!-- /lcd-ctrl card -->
+
   </div><!-- /grid -->
 
-  <div class="footer">penetastukik · real-time dashboard · firebase rtdb</div>
+  <div class="footer">penetastukik · real-time dashboard · firebase rtdb · v7</div>
 </body>
 </html>
